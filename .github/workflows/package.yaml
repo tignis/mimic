@@ -1,0 +1,33 @@
+name: Build Python Package
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1604-README.md#python
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package
+        env:
+          PIP_EXTRA_INDEX_URL: ${{ secrets.PIP_EXTRA_INDEX_URL }}
+        run: |
+          python -m pip install --upgrade pip
+          pip install '.[testing]'
+      - name: Test with pytest
+        run: |
+          pytest ./tests/ ./tignis/ --junitxml=junit/test-results-${{ matrix.python-version }}.xml
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytes-results-${{ matrix.python-version }}
+          path: junit/test-results-${{ matrix.python-version }}.xml
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
