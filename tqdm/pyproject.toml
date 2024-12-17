@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64.0.0", "pip >= 21.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tqdm"
+description = "tqdm no-ops"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text =  "Proprietary"}
+authors = [
+    {name = "Tignis Dev", email = "eng@tignis.com"},
+    ]
+dependencies = []
+version="4.27.0"
+
+[project.optional-dependencies]
+testing = [
+    "pytest"
+]
+
+[project.urls]
+"Repository" = "https://github.com/tignis/tqdm"
+
+[tool.setuptools.packages.find]
+include = ["tqdm", "tqdm.auto"]
