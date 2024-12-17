@@ -20,7 +20,7 @@ testing = [
 ]
 
 [project.urls]
-"Repository" = "https://github.com/tignis/tqdm"
+"Repository" = "https://github.com/tignis/shenanigans"
 
 [tool.setuptools.packages.find]
 include = ["tqdm", "tqdm.auto"]
