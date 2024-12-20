@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=64.0.0", "pip >= 21.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "certifi"
+description = "certifi bsd ca bundle"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "Proprietary" }
+authors = [{ name = "Tignis Dev", email = "eng@tignis.com" }]
+dependencies = []
+version = "2024.12.14"
+
+[project.urls]
+"Repository" = "https://github.com/tignis/mimic"
+
+[tool.setuptools.packages.find]
+include = ["certifi"]
