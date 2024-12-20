@@ -17,3 +17,6 @@ version = "2024.12.14"
 
 [tool.setuptools.packages.find]
 include = ["certifi"]
+
+[tool.setuptools.package-data]
+certifi = ["root_store.certs"]
